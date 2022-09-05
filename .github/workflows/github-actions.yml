@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SA_KEY: ${{ secrets.GCP_GITHUB_ACTIONS_SA_KEY }}
-  IMAGE: demo
+  IMAGE: demo-repo
   LOCATION: eu-north1
 
 jobs:
