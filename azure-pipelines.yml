@@ -7,20 +7,12 @@ trigger:
 
 variables:
   tag: '$(Build.BuildId)'
+  imageName: demo
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+steps:
+  - task: Docker@2
+    displayName: Build an image
+    inputs:
+      repository: $(imageName)
+      command: build
+      Dockerfile: app/Dockerfile
