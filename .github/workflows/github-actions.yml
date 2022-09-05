@@ -9,7 +9,7 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SA_KEY: ${{ secrets.GCP_GITHUB_ACTIONS_SA_KEY }}
   IMAGE: demo
-
+  LOCATION: eu-north1
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
         - name: Build
           run: |-
             docker build \
-              --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+              --tag "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
               --build-arg GITHUB_SHA="$GITHUB_SHA" \
               --build-arg GITHUB_REF="$GITHUB_REF" \
               .
@@ -49,4 +49,4 @@ jobs:
         # Push the Docker image to Google Container Registry
         - name: Publish
           run: |-
-            docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+            docker push "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
