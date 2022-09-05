@@ -1,0 +1,10 @@
+
+spring:
+  datasource:
+    username: postgres
+    password: password
+    url: jdbc:postgresql://localhost:5432/demo
+  jpa:
+    generate-ddl: true
+  flyway:
+    baseline-on-migrate: true
