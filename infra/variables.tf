@@ -3,3 +3,7 @@ variable "project-id" {
   type        = string
 }
 
+variable "owner-email" {
+  description = "Email of the owner"
+  type        = string
+}

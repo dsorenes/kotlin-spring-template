@@ -43,9 +43,10 @@ jobs:
             project_id: ${{ secrets.GCP_PROJECT_ID }}
 
         # Configure Docker to use the gcloud command-line tool as a credential
-        # helper for authentication
+        # helper for authentication.
+        # We need to use the specific region in order to authenticate properly.
         - run: |-
-            gcloud --quiet auth configure-docker europe-north1-docker.pkg.dev
+            gcloud --quiet auth configure-docker "$LOCATION-docker.pkg.dev"
         # Push the Docker image to Google Container Registry
         - name: Publish
           run: |-

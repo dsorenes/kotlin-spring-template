@@ -30,7 +30,7 @@ resource "google_project_iam_binding" "owner" {
   role    = "roles/owner"
 
   members = [
-    "user:daniel@kodio.no",
+    "user:${var.owner-email}",
   ]
 }
 
