@@ -12,3 +12,12 @@ resource "google_project_iam_member" "github-actions" {
   role   = each.key
   member = "serviceAccount:${google_service_account.github-actions.email}"
 }
+
+resource "google_artifact_registry_repository_iam_member" "repo-iam" {
+  provider = google-beta
+
+  location = "europe-north1"
+  repository = "demo-repo"
+  role   = "roles/artifactregistry.repoAdmin"
+  member = "serviceAccount:${google_service_account.github-actions.email}"
+}

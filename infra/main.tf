@@ -25,6 +25,15 @@ resource "google_project_service" "artifact-registry" {
   service = "artifactregistry.googleapis.com"
 }
 
+resource "google_project_iam_binding" "owner" {
+  project = var.project-id
+  role    = "roles/owner"
+
+  members = [
+    "user:daniel@kodio.no",
+  ]
+}
+
 # resource "google_artifact_registry_repository" "docker-demo-repo" {
 #   provider      = google-beta
 
