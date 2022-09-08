@@ -10,6 +10,7 @@ env:
   SA_KEY: ${{ secrets.GCP_GITHUB_ACTIONS_SA_KEY }}
   IMAGE: demo-repo
   LOCATION: europe-north1
+  DB_INSTANCE_NAME: ${{ secrets.DB_INSTANCE_NAME }}
 
 jobs:
   build:
@@ -51,4 +52,5 @@ jobs:
             docker push "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo" --all-tags
         - name: Deploy
           run: |-
-            gcloud run deploy demo --image="$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:latest" --region="$LOCATION"
+            gcloud run deploy demo --image="$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:latest" --region="$LOCATION" \
+              --set-env-vars=SPRING_CLOUD_GCP_SQL_INSTANCE_CONNECTION_NAME="$DB_INSTANCE_NAME"
