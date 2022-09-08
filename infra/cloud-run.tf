@@ -5,7 +5,11 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = "europe-north1-docker.pkg.dev/daniel-361210/demo-repo/demo:2.5"
+        image = "europe-north1-docker.pkg.dev/daniel-361210/demo-repo/demo:3.1"
+        env {
+          name = "SPRING_CLOUD_GCP_SQL_INSTANCE_CONNECTION_NAME"
+          value = var.db-instance-name
+        }
       }
 
       service_account_name = google_service_account.cloud-run.email
