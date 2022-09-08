@@ -5,6 +5,9 @@ on:
   push:
     branches: [ master ]
 
+    paths-ignore:
+          - 'infra/**'
+          - '**.md'
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SA_KEY: ${{ secrets.GCP_GITHUB_ACTIONS_SA_KEY }}
