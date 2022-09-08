@@ -8,6 +8,8 @@ resource "google_project_iam_member" "github-actions" {
   project = var.project-id
   for_each = toset([
     "roles/artifactregistry.admin",
+    "roles/run.developer",
+    "roles/iam.serviceAccountUser",
   ])
   role   = each.key
   member = "serviceAccount:${google_service_account.github-actions.email}"
