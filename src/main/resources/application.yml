@@ -6,8 +6,8 @@ spring:
   cloud:
     gcp:
       sql:
-        # This needs to be here for now, if not the cloud run instance won't be able to connect to the db
-        # instance-connection-name:
+        # We cannot instantiate the variable `instance-connection-name` when deploying because it takes precedence over env
+        # variables passed through terraform for Cloud Run.
         database-name: demo
   jpa:
     generate-ddl: true
