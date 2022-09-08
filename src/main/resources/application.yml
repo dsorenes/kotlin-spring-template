@@ -6,7 +6,8 @@ spring:
   cloud:
     gcp:
       sql:
-        instance-connection-name:
+        # This needs to be here for now, if not the cloud run instance won't be able to connect to the db
+        # instance-connection-name:
         database-name: demo
   jpa:
     generate-ddl: true
