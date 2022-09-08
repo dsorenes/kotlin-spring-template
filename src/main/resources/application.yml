@@ -3,8 +3,10 @@ spring:
   datasource:
     username: postgres
     password: password
-    url: jdbc:postgresql://localhost:5432/demo
+  cloud:
+    gcp:
+      sql:
+        instance-connection-name: daniel-361210:europe-north1:demo-instance
+        database-name: demo
   jpa:
     generate-ddl: true
-  flyway:
-    baseline-on-migrate: true
