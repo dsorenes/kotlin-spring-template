@@ -30,9 +30,7 @@ jobs:
           run: |-
             docker build \
               --tag "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:$GITHUB_SHA" \
-              --build-arg GITHUB_SHA="$GITHUB_SHA" \
-              --build-arg GITHUB_REF="$GITHUB_REF" \
-              .
+              --tag "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:latest" .
         - name: Checkout
           uses: actions/checkout@v3
 
@@ -50,4 +48,7 @@ jobs:
         # Push the Docker image to Google Container Registry
         - name: Publish
           run: |-
-            docker push "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:$GITHUB_SHA"
+            docker push "$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo" --all-tags
+        - name: Deploy
+          run: |-
+            gcloud run deploy demo --image="$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:latest" --region="$LOCATION"
