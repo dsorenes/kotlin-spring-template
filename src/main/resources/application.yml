@@ -6,7 +6,7 @@ spring:
   cloud:
     gcp:
       sql:
-        instance-connection-name: daniel-361210:europe-north1:demo-instance
+        instance-connection-name:
         database-name: demo
   jpa:
     generate-ddl: true
