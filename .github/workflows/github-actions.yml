@@ -53,4 +53,5 @@ jobs:
         - name: Deploy
           run: |-
             gcloud run deploy demo --image="$LOCATION-docker.pkg.dev/$PROJECT_ID/$IMAGE/demo:latest" --region="$LOCATION" \
-              --set-env-vars=SPRING_CLOUD_GCP_SQL_INSTANCE_CONNECTION_NAME="$DB_INSTANCE_NAME"
+              --set-env-vars=SPRING_CLOUD_GCP_SQL_INSTANCE_CONNECTION_NAME="$DB_INSTANCE_NAME" \
+              --allow-unauthenticated
