@@ -29,7 +29,8 @@ resource "google_project_iam_binding" "owner" {
   project = var.project-id
   for_each = toset([
     "roles/owner",
-    "roles/container.admin"
+    "roles/container.admin",
+    "roles/pubsub.admin"
   ])
   role = each.key
 
@@ -53,11 +54,3 @@ resource "google_project_service" "compute" {
 resource "google_project_service" "cloud-run" {
   service = "run.googleapis.com"
 }
-
-# resource "google_artifact_registry_repository" "docker-demo-repo" {
-#   provider      = google-beta
-
-#   repository_id = "demo-repository"
-#   description   = "Repository for demo"
-#   format        = "DOCKER"
-# }
